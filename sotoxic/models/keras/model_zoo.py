@@ -277,3 +277,42 @@ def get_dropout_bi_gru(nb_words, embedding_dim, embedding_matrix, max_sequence_l
                   optimizer='adam',
                   metrics=['accuracy'])
     return model
+
+
+def get_av_pos_rnn(nb_words, embedding_dim, embedding_matrix, max_sequence_length, out_size):
+    recurrent_units = 56
+    input_layer = Input(shape=(max_sequence_length,), name='Onehot')
+    input_layer_2 = Input(shape=(max_sequence_length,), name='POS')
+
+    word_layer = Embedding(nb_words,
+                                embedding_dim,
+                                weights=[embedding_matrix],
+                                input_length=max_sequence_length,
+                                trainable=False)(input_layer)
+    pos_layer = Embedding(50, 36,
+                         input_length=max_sequence_length,
+                         trainable=True)(input_layer_2)
+    embedding_layer = concatenate([word_layer, pos_layer], axis=2)
+    embedding_layer = SpatialDropout1D(0.25)(embedding_layer)
+
+    r1 = Bidirectional(CuDNNGRU(recurrent_units, return_sequences=True))(embedding_layer)
+    r1 = SpatialDropout1D(0.3)(r1)
+    r2 = Bidirectional(CuDNNGRU(recurrent_units, return_sequences=True))(r1)
+
+    last = Lambda(lambda t: t[:, -1], name='last')(r2)
+    maxpool = GlobalMaxPooling1D()(r2)
+    attn = AttentionWeightedAverage()(r2)
+    average = GlobalAveragePooling1D()(r2)
+
+    concatenated = concatenate([last, maxpool, attn, average], axis=1)
+    x = Dropout(0.5)(concatenated)
+    x = Dense(128, activation="relu")(x)
+    x = Dropout(0.25)(x)
+    output_layer = Dense(out_size, activation="sigmoid")(x)
+
+    model = Model(inputs=[input_layer, input_layer_2], outputs=output_layer)
+    adam_optimizer = optimizers.Adam(lr=1e-3, clipvalue=5, decay=1e-7)
+    model.compile(loss='binary_crossentropy',
+                  optimizer=adam_optimizer,
+                  metrics=['accuracy'])
+    return model
