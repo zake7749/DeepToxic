@@ -1,6 +1,6 @@
 # DeepToxic
 
-This is part of 24th solution for the [toxic comment classification challenge](https://www.kaggle.com/c/jigsaw-toxic-comment-classification-challenge/). For easy reading, I only uploaded what I used in the final stage, and did not attach any experimental or deprecated codes.
+This is part of 27th solution for the [toxic comment classification challenge](https://www.kaggle.com/c/jigsaw-toxic-comment-classification-challenge/). For easy reading, I only uploaded what I used in the final stage, and did not attach any experimental or deprecated codes.
 
 ## Dataset and External pretrained embeddings
 
@@ -38,6 +38,8 @@ In order to increase the diversity and to deal with some toxic typos, we trained
 
 ## Performance of Single models
 
+### Word level
+
 |Model|Fasttext|Glove|Twitter|
 |-----|--------|-----|-------|
 |AVRNN|0.9858|0.9855|0.9844|
@@ -48,3 +50,13 @@ In order to increase the diversity and to deal with some toxic typos, we trained
 |Pos-AVCNN|0.9850|No data|No data|
 |KmaxCNN|0.9847|0.9844|0.9836|
 |RCNN|0.9847|0.9833|0.9832|
+|RHN|0.9842|No data|No data|
+
+### Char level
+
+
+|Model|AUC|
+|-----|------|
+|AVRNN|0.9821|
+|KmaxCNN|0.9801|
+
