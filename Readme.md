@@ -1,6 +1,6 @@
 # DeepToxic
 
-This is part of top 24th solution for the [toxic comment classification challenge](https://www.kaggle.com/c/jigsaw-toxic-comment-classification-challenge/). For easy reading, I only uploaded what I used in the final stage, and did not attach any experimental or deprecated codes.
+This is part of 24th solution for the [toxic comment classification challenge](https://www.kaggle.com/c/jigsaw-toxic-comment-classification-challenge/). For easy reading, I only uploaded what I used in the final stage, and did not attach any experimental or deprecated codes.
 
 ## Dataset and External pretrained embeddings
 
