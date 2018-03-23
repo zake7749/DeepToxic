@@ -4,7 +4,7 @@ This is part of top 24th solution for the [toxic comment classification challeng
 
 ## Dataset and External pretrained embeddings
 
-You can fetch the dataset [here](https://www.kaggle.com/c/jigsaw-toxic-comment-classification-challenge/download). I used 3 kind of word embeddings:
+You can fetch the dataset [here](https://www.kaggle.com/c/jigsaw-toxic-comment-classification-challenge/data). I used 3 kind of word embeddings:
 
 * [FastText crawl 300d 2M](https://www.kaggle.com/yekenot/fasttext-crawl-300d-2m)
 * [glove.840B.300d](https://nlp.stanford.edu/projects/glove/) 
