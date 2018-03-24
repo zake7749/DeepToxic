@@ -1,6 +1,6 @@
 # DeepToxic
 
-This is part of 27th solution for the [toxic comment classification challenge](https://www.kaggle.com/c/jigsaw-toxic-comment-classification-challenge/). For easy reading, I only uploaded what I used in the final stage, and did not attach any experimental or deprecated codes.
+This is part of 27th solution for the [toxic comment classification challenge](https://www.kaggle.com/c/jigsaw-toxic-comment-classification-challenge/). For easy understanding, I only uploaded what I used in the final stage, and did not attach any experimental or deprecated codes.
 
 ## Dataset and External pretrained embeddings
 
@@ -38,18 +38,21 @@ In order to increase the diversity and to deal with some toxic typos, we trained
 
 ## Performance of Single models
 
+Scored by AUC on the private testset.
+
 ### Word level
 
 |Model|Fasttext|Glove|Twitter|
 |-----|--------|-----|-------|
-|AVRNN|0.9858|0.9855|0.9844|
+|AVRNN|0.9858|0.9855|0.9843|
 |Meta-AVRNN|0.9850|0.9849|No data|
 |Pos-AVRNN|0.9850|No data|0.9841|
 |AVCNN|0.9846|0.9845|0.9841|
 |Meta-AVCNN|0.9844|0.9844|No data|
 |Pos-AVCNN|0.9850|No data|No data|
-|KmaxCNN|0.9847|0.9844|0.9836|
-|RCNN|0.9847|0.9833|0.9832|
+|KmaxTextCNN|0.9849|0.9845|0.9835|
+|TextCNN|0.9837|No data|No data|
+|RCNN|0.9847|0.9842|0.9832|
 |RHN|0.9842|No data|No data|
 
 ### Char level
@@ -59,4 +62,5 @@ In order to increase the diversity and to deal with some toxic typos, we trained
 |-----|------|
 |AVRNN|0.9821|
 |KmaxCNN|0.9801|
+|AVCNN|0.9797|
 
